@@ -34,7 +34,77 @@
 
 #### &sect; 3.数据类型
 
+![pic](https://github.com/Vincy-w/my_java_study/raw/main/picture/数据类型.png)
 
+##### 一、整型使用
+
+​	1、Java整型默认为int，声明long型须在后面加“l“或”L“
+
+​	2、1byte = 8bits
+
+##### 二、浮点
+
+​	1、浮点数 = 符号位 + 指数位 + 尾数位
+
+​	2、Java浮点默认为double型，声明float时须在后面加”f”或“F”
+
+​	3、浮点数表示：0.512 = .512
+
+​		  科学计数：5.12e2(5.12×10^2)，5.12e-2(5.12×10^-2)
+
+​	4、浮点数使用陷阱：2.7 ≠ 8.1/3
+
+##### 三、字符类型
+
+​	1、简介：表示单个字符
+
+​	2、Java中char的本质是一个整数，输出时，为Unicode对应字符
+
+​	3、字符类存储时，将字符对应码值找出，再转为二进制存储
+
+​	 	 <font color = gray>eg.存：‘a’ => 97 => 二进制 =>存</font>
+
+##### 四、布尔类
+
+​	只能为true或false，不能用0或非0整数替代
+
+#### &sect; 4.基本数据类型转换
+
+##### 一、自动类型转换
+
+​	1、精度小的可自动转换为精度大的数据类型
+
+​	2、精度大小排序
+
+​		char -> int ->long -> float -> double
+
+​		byte -> short -> int -> long -> float -> double
+
+​	3、注意细节：（1）（byte、short）和char之间不能自动转换
+
+​							 （2）byte、short、char三者可以计算，计算时首先转为int
+
+##### 二、强制类型转换
+
+​	1、语法：在变量前加：“ (要变的数据类型) ”
+
+​	2、char可保存int常量值，但不能存int变量值
+
+##### 三、基本数据类型和String类型的转换
+
+​	1、基本数据类型转为String类型
+
+​		 语法：给基本类型值加 “ ”即可。如： `int n1 = 100; String s1 = n1 + " ";`
+
+​	2、String类型转基本数据类型
+
+​		 语法：通过基本类型的包装类调用parseXX方法即可。如下：
+
+​		 `Integer.parseInt("123");`
+
+​		 `Double.parseDouble("12.3");`
+
+​		 `Float.parseFloat("12.3");`
 
 
 
