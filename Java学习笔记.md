@@ -32,6 +32,8 @@
 
 2、明确类与类之间的调用关系
 
+![hadoop](https://github.com/Vincy-w/my_java_study/raw/main/picture/房屋租赁.png)
+
 （具体实现见代码）
 
 
