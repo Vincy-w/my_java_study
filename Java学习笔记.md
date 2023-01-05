@@ -52,6 +52,84 @@ Java语言中，将程序执行中发生的不正常情况称为“异常”（�
 
 **一、图览**
 
+![hadoop](https://github.com/Vincy-w/my_java_study/raw/main/picture/异常体系.png)
+
+#### &sect;3.常见的异常
+
+**一、常见的运行异常**
+
+1、NullPointerException空指针异常
+
+​	当应用程序试图在需要对象的地方使用null时，会抛出异常
+
+2、ArithmeticException数学运算异常
+
+​	当出现异常的运算条件时，抛出异常。如，除数为零
+
+3、ArrayIndexOutOfBoundsException数组下标越界异常
+
+​	用非法索引访问数组时抛出的异常。若索引为负或大于等于数组大小，则该索引非法。
+
+4、ClassCastException类型转换异常
+
+​	当试图将对象强制转换为不是实例的子类时，抛出该异常
+
+5、NumberFormatException数字格式不正确异常
+
+​	当应用程序试图将字符串转换成一种数值类型，但该字符串不能转换为适用格式时，抛出该异常 =》使用异常可确保输入是满足条件数字
+
+**二、常见的编译异常**
+
+（编译期间，就必须处理的异常，否则代码不能通过编译）
+
+SQLException	//操作数据库时，查询表可能发生异常
+
+IOException	//操作文件时，发生的异常
+
+FileNotFoundException	//当操作一个不存在的文件时，发生异常
+
+ClassNotFoundException	//加载类，而类不存在时，异常
+
+EOFException	//操作文件，到文件末尾，发生异常
+
+IllegalArgumentException	//参数异常
+
+#### &sect;4.异常处理
+
+**一、介绍**
+
+异常处理是当异常发生时，对异常处理的方式
+
+**二、处理方式**
+
+1、try-catch-finally
+
+​	程序员在代码中捕获发生的异常，自行处理
+
+2、throws
+
+​	将发生的异常抛出，交给调用者（方法）来处理，最顶级处理者是JVM
+
+**三、示意图**
+
+1、try-catch-finally	//快捷键ctrl+alt+t
+
+​	try{
+
+​		代码//可能有异常
+
+​	}catch(Exception e){	//若无异常，则catch不执行。系统将异常信息封装成e，传给catch，得到异常后，程序员处理
+
+​		e.getMessage();	//捕获异常。
+
+​	}finally{
+
+​	//不管try是否有异常，始终执行finally，一般将释放资源代码置于此
+
+​	}
+
+2、throws
+
 
 
 
