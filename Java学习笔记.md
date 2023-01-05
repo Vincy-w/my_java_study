@@ -130,7 +130,47 @@ IllegalArgumentException	//参数异常
 
 2、throws
 
+![hadoop](https://github.com/Vincy-w/my_java_study/raw/main/picture/throws.png)
 
+注：try-catch-finally和throws二选一使用。若没有try-catch，则默认使用throws
+
+**四、try-catch方式处理异常说明**
+
+1、Java提供try和catch块处理异常。try块用于包含可能出错的代码。catch块用于处理try块中发生的异常。可根据需要在程序中设多个try-catch块
+
+2、注意事项
+
+​	①若异常发生，则异常发生后面的代码不会执行，直接进入到catch块
+
+​	②若异常未发生，则顺序执行try代码块，不会进入catch
+
+​	③可有多个catch语句，捕获不同的异常，进行不同的业务处理。要求父类异常在后，子类异常在前，若发生异常，只会匹配一个catch
+
+​	eg.try{
+
+​		 }catch(NullPointerException e){
+
+​		 }catch(Exception e){
+
+​		 }
+
+​	④可进行try-finally配合使用，此用法相当于没有捕获异常，因此程序直接退出/崩掉。应用场景：不管是否发生异常，都必须执行某业务逻辑。
+
+**五、throws异常处理**
+
+1、介绍
+
+​	①若一方法可能生成某种异常，但并不能确定如何处理。则此方法应显式地声明抛出异常，表明该方法将不对这些异常进行处理，而由方法调用者负责。
+
+​	②在方法声明中用throws语句可声明抛出异常的列表，throws后的异常类型可以是方法中产生的异常类型，也可以是他的父类。
+
+2、使用细节
+
+​	①对于编译异常，程序中必须处理。throws和try-catch均可
+
+​	②对运行异常，程序中未处理，默认使用throws
+
+​	③子类重写父类方法时，对抛出异常的规定：子类重写的方法，所抛出的异常要么和父类一致，要么为父类抛出异常类型的子类。
 
 
 
