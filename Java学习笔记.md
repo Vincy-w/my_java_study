@@ -180,7 +180,323 @@ public void m1(){
 
 ​			s1 = "haha";
 
+​	![hadoop](https://github.com/Vincy-w/my_java_study/blob/main/picture/String改变.png)
 
+​	eg2.String  a = "hello" + "abc";
+
+​			//编译器会优化为String a = "helloabc"
+
+​	eg3.String a = "hello";
+
+​			String b = "abc";
+
+​			String c = a+b;
+
+​			/*
+
+​				1.先创建StringBuilder sb = StringBuilder()
+
+​				2.执行sb.append("hello")
+
+​				3.sb.append("abc")
+
+​				4.String c = sb.toString()
+
+​			*/
+
+​			内存示意：
+
+​			![hadoop](https://github.com/Vincy-w/my_java_study/blob/main/picture/String内存-3.png)
+
+**三、String类常见方法**
+
+1、说明：String类是保存字符串常量的。每次更新都须重新开辟空间，效率较低，因此java设计者提供了String Builder和StringBuffer来增强String功能，并提高效率
+
+2、实例1
+
+​	equals	//区分大小写，判断内容是否相等
+
+​	equalsIgnoreCase	//忽略大小写的判断内容是否相同
+
+​	length	//获取字符个数
+
+​	indexOf	//获取字符在字符串中第一次出现的索引，若没有，返回-1
+
+​	lastIndexOf	//获取字符在字符串中最后一次出现的索引，若没有，返回-1
+
+​	substring	//截取指定范围的子串
+
+​	trim	//去前后空格
+
+​	charAt	//获取某索引处的字符，不能用str[index]取字符
+
+3、实例2
+
+​	replace	//替换字符串中字符
+
+​	split	//分割字符串，对某些分割字符，须转义，如“|、\\\”等
+
+​	compareTo	//比较两字符串大小
+
+​	toCharArray	//转换成字符数组
+
+​	format	//格式字符串，%s字符串，%c字符，%d整型，%2f浮点型（%-称为占位符，由后面变量来替换）
+
+​	toUpperCase	//转成大写
+
+​	toLowerCase	//转成小写
+
+​	concat	//拼接字符串
+
+#### &sect;3.StringBuffer类
+
+**一、介绍**
+
+1、java.lang.StringBuffer代表可变字符序列，可对字符串内容进行增删
+
+2、很多方法与String相同，但StringBuffer可变长度
+
+3、StringBuffer是一个容器
+
+**二、String VS StringBuffer**
+
+1、String保存的是字符串常量，里面的值不能修改，每次String类的更新实际上是更改地址、效率低
+
+2、StringBuffer存的是字符串变量，里面的值可以更改，每次StringBuffer的更新实际上可更新内容，不用每次更新地址，效率更高
+
+//char[] value 放在堆
+
+**三、StringBuffer构造器**
+
+1、StringBuffer()
+
+​	构造一个其中不带字符的字符串缓冲区，初始容量16
+
+2、StringBuffer(CharSequence seq)
+
+​	构造一个字符串缓冲区，包含与指定CharSequence相同的字符
+
+3、StringBuffer(int capcity)
+
+​	构造一个不带字符，但具有指定初始容量的字符串缓冲区
+
+4、StringBuffer(String str)
+
+​	构造一个字符串缓冲区，并将其内容初始化为指定的字符串内容，长度为str.length()+16
+
+**四、String和StringBuffer相互转换**
+
+1、String->StringBuffer
+
+​	String s = "hello";
+
+​	①StringBuffer b1 = new StringBuffer(s);
+
+​	②StringBuffer b2 = new StringBuffer(); b2.append(s);
+
+2、StringBuffer- >String
+
+​	StringBuffer b3 = new StringBuffer("hspedu");
+
+​	①String s = b3.toString();
+
+​	②String s = new String(b3);
+
+**五、StringBuffer类常见的方法**
+
+1、增 append（）
+
+2、删 delete（start，end）//删[start,end)间字符
+
+3、改 replace(start,end,string)	//替换
+
+4、查 indexOf	//查找子串第一次出现的位置，若无，则返回-1
+
+5、插 insert(index,"...")
+
+6、获取长度 length
+
+#### &sect;4.StringBuilder类
+
+**一、介绍**
+
+1、一个可变字符序列。此类提供一个与StringBuffer兼容的API，但不保证同步。该类被设计用作StringBuffer的一个简易替换，用在字符串缓冲区被单个线程使用的时候。若可能，建议优先采用该类，因为在大多数实现中，它比StringBuffer快
+
+2、在StringBuilder上主要操作是append和insert方法，可重载这些方法，以接受任意类型的数据
+
+**二、常用方法**
+
+参考StringBuffer
+
+**三、String、StringBuffer、StringBuilder比较**
+
+1、StringBuilder和StringBuffer非常类似，均代表可变字符序列，且方法一样
+
+2、String：不可变字符序列，效率低，但复用率高
+
+3、StringBuffer：可变字符序列，效率较高，线程安全
+
+4、StringBuilder：可变字符序列，效率最高，线程不安全
+
+5、String使用注意：若对String做大量修改，则不要使用String
+
+**四、使用原则**
+
+1、若字符串存在大量修改操作，一般用StringBuffer或StringBuilder
+
+2、若字符串很少修改，被多个对象引用，用String
+
+#### &sect;5.Math类
+
+**一、介绍**
+
+Math类包含用于执行基本数学运算的方法，如初等指数，对数，平方根和三角函数
+
+**二、常用方法**
+
+1、abs 绝对值
+
+2、random 求随机数
+
+……
+
+#### &sect;6.Arrays类
+
+**一、常见方法**
+
+1、toString返回数组的字符串形式
+
+​	Arrays.toString(arr);
+
+2、sort排序（自然排序、定制排序）
+
+​	①直接使用sort传入数组，即可实现由小到大排序
+
+​	②也可以通过传入一个Comparator接口实现定制排序。调用时，传入排序数组arr和实现了Comparator接口的匿名内部类
+
+3、binarySearch通过二分搜索法进行查找，要求必须排好序（升序）
+
+4、copyOf数组元素的复制
+
+​	Integer[] newArr = Arrays.copyOf(arr,arr.length);
+
+5、fill数组元素的填充
+
+​	Integer[] num = new Integer[]{9,3,2};
+
+​	Array.fill(num,99);
+
+​	//用指定数将数组内所有数替换
+
+6、equals.比较两数组元素内容是否完全一致
+
+​	boolean equals = Arrays.equals(arr1,arr2);
+
+7、asList将一组值，转换成list
+
+​	`List<Integer> asList = Arrays.asList(2,6,1);`
+
+​	`sout...("asList="+asList);`
+
+​	//asList方法将数组转成一个List集合，运行类型是Arrays类的静态内部类ArrayList
+
+#### &sect;7.System类
+
+**一、常见方法**
+
+1、exit 退出当前程序
+
+2、arraycopy 复制数组元素，比较适合底层调用，一般使用Array.copyOf完成复制数组
+
+3、currentTimeMillens 返回当前时间距离，1970-1-1至今的毫米数
+
+4、gc 运行垃圾回收机制
+
+#### &sect;8.BigInteger和BigDecimal类
+
+**一、介绍**
+
+1、应用场景
+
+​	①BigInteger适合保存较大的整型
+
+​	②BigDecimal适合精度更高的浮点型
+
+2、加减乘除时须使用相应方法：add,substract,multiply,divide
+
+3、构建对象时，需用字符串
+
+​	eg.BigInteger b1 = new BigInteger("99999999999");
+
+4、BigDecimal在调用divide可能出现无限小数，抛出异常，可以指定精度
+
+​	eg.bigDecimal.divide(bigDecimal2,BigDecimal.ROUND_CEILING);//与分子精度相同
+
+#### &sect;9.日期类
+
+**一、第一代日期类**
+
+1、Date：精确到毫秒，代表特定瞬间
+
+2、SimpleDateFormat：格式和解析日期的类。允许进行格式化（日期-》文本），解析（文本-》日期）和规范化
+
+3、这里的Date类在Java.util包中
+
+4、创建SimpleDateFormat对象，可指定相应格式有固定规则
+
+5、可以将格式化的String转成对应Date，SimpleDateFormat.parse(str);
+
+**二、第二代日期类**
+
+1、主要指Calendar类
+
+2、Calendar类是一个抽象类
+
+3、创建对象：Calendar c = Calendar.getInstance();//不能new
+
+4、获取日历对象某字段
+
+​	c.get(Calendar.YEAR)
+
+​	c.get(Calendar.MONTH)+1;//月份按从0编号，故+1
+
+​	c.get(Calendar.HOUR)
+
+**三、第三代日期类**
+
+1、前两代的不足
+
+​	①可变性：日期和时间这样的类应是不可变的
+
+​	②偏移性：Date中年份从1900开始，月份都从0开始
+
+​	③格式化：只对Date有用，Calendar不行
+
+​	④不是线程安全的，不能处理闰秒
+
+2、常见方法
+
+​	①LocalDate（日期/年月日）、LocalTime（时间/时分秒）、LocalDateTime（日期时间）
+
+​	②DateTimeFormatter格式日期类
+
+​		eg.DateTimeFormatter dtf = DateTimeFormatter.ofPattern(格式)；
+
+​			 String str = dtf.format(日期对象)；
+
+​	③Instant时间戳
+
+​		Instant-》Date
+
+​		Date d = Date.from(instant)
+
+​		Date->Instant
+
+​		Instant ins = date.toInstant();
+
+​	④plus和minus可对当前时间进行加或减
+
+​		eg.LocalDateTime ldt = now.plusDays(int);
 
 
 
