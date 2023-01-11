@@ -24,6 +24,152 @@
 
 第十二章：[异常(Exception)](#12)
 
+第十三章：[常用类](#13)
+
+
+
+<p id="13"></p>
+
+
+
+### 第十三章：常用类
+
+#### &sect;1.包装类（Wrapper）
+
+**一、分类**
+
+1、针对八种基本数据类型相应的引用类型——包装类
+
+2、有了类的特点，就可以调用类中方法
+
+|  基本数据类型  |     包装类     |
+| :------------: | :------------: |
+|    boolean     |    Boolean     |
+|      char      |   Character    |
+|      byte      |      Byte      |
+|     short      |     Short      |
+|      int       |    Integer     |
+|      long      |      Long      |
+| float . double | Folat . Double |
+
+注：除前两行外，其余均为Number的子类
+
+**二、包装类和基本数据类型转换**
+
+以int和Integer为例：
+
+1、jdk5前手动装箱、拆箱。装箱指基本数据类型--》包装类型
+
+2、jkd5以及以后的自动装箱、拆箱
+
+3、其他包装类用法相似
+
+**三、包装类和String类型相互转换**
+
+1、包装类--》String
+
+​	eg.Integer i = 100;
+
+​		 String str1 = i+"";	//法1
+
+​		 String str2 = i.toString();	//法2
+
+​		 String str3 = String.valueOf(i);	//法3
+
+2、String--》包装类
+
+​	eg.String str = "123";
+
+​		 Integer i2 = Integer.parseInt(str);	//法1
+
+​		 Integer i3 = new Integer(str);	//法2
+
+**四、Integer和Character类的常用方法**
+
+1、Integer.MIN_VALUE	//返回最小值
+
+​	  Integer.MAX_VALUE	//返回最大值
+
+2、Character.isDigit('a');	//判断是否为数字
+
+​	  Character.isLetter('a');	//判断是否为字母
+
+​	  Character.isUpperCase('a');	//判断是否为大写
+
+​	  Character.isLowerCase('a');	//判断是否为小写
+
+​	  Character.isWhitespace('a');	//判断是否为空格
+
+​	  Character.toUpperCase('a');	//转成大写
+
+​	  Character.toLowerCase('A');	//转成小写
+
+**五、Integer创建机制**
+
+public void m1(){
+
+​	Integer i = new Integer(1);
+
+​	Integer j = new Integer(1);
+
+​	sout...(i==j);	//false
+
+
+
+​	Integer m = 1;	//底层是Integer.valueOf(1)
+
+​	Integer n = 1;
+
+​	sout...(m==n);	//true
+
+​	//阅读源码可知，当值为-128—127时，不会创建新对象，其他值会new Integer
+
+
+
+​	Integer x = 128;
+
+​	Integer y = 128;
+
+​	sout...(x==y);	//false
+
+}
+
+#### &sect;2.String类
+
+**一、String类理解和创建对象**
+
+1、String对象用于保存字符串
+
+2、字符串常量对象是用双引号括起的字符序列
+
+3、字符串字符使用Unicode字符编码，一个字符占两字节
+
+4、字符串类常用构造器：
+
+​	String s1 = new String();
+
+​	String s2 = new String(String s);
+
+​	String s3 = new String(char[] a);
+
+​	String s4 = new String(char[] a,int startIndex,int count);
+
+5、String类实现了接口Serializable（可串行化：可在网络传输）Comparable（可以相互比较大小）
+
+6、String类是final类
+
+7、创建：①String s = "hsp";
+
+​				  ②String s = new String("hsp")
+
+​		注：法①，先从常量池查看是否有“hsp”空间，若有，直接指向；若没有，则重新创建，再指向。s最终指向的是常量池空间地址
+
+​				法②，先在堆中创建空间，里面维护value属性，指向常量池的hsp空间。若常量池没有“hsp”，重新创建，若有，直接通过value		指向，最终指向堆中空间地址
+
+​		③内存图
+
+​		
+
 
 
 <p id="12"></p>
@@ -171,6 +317,29 @@ IllegalArgumentException	//参数异常
 ​	②对运行异常，程序中未处理，默认使用throws
 
 ​	③子类重写父类方法时，对抛出异常的规定：子类重写的方法，所抛出的异常要么和父类一致，要么为父类抛出异常类型的子类。
+
+#### &sect;5.自定义异常
+
+**一、概念**
+
+当程序中出现某些“错误”，但该错误信息并没有在Throwable子类中描述处理，这个时候可以自己设计异常类，用于描述该错误信息
+
+**二、步骤**
+
+1、定义类：自定义异常类名（程序员自己设）继承Exception或RuntimeException
+
+2、若继承Exception，属编译异常
+
+3、若继承RuntimeException，属运行异常
+
+#### &sect;6.throw和throws的区别
+
+**一、概述**
+
+|        |           意义           |    位置    | 后面内容 |
+| :----: | :----------------------: | :--------: | :------: |
+| throws |    异常处理是一种方式    | 方法声明处 | 异常类型 |
+| throw  | 手动生成异常对象的关键字 |  方法体中  | 异常对象 |
 
 
 
