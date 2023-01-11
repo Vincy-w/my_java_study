@@ -168,7 +168,19 @@ public void m1(){
 
 ​		③内存图
 
-​		
+​		![hadoop](https://github.com/Vincy-w/my_java_study/raw/main/picture/String内存.png)
+
+**二、字符串的特性**
+
+1、String是一个final类，代表不可变的字符序列
+
+2、字符串是不可变的，一个字符串对象一旦被分配，其内容是不可变的
+
+​	eg1.String s1 = "hello";
+
+​			s1 = "haha";
+
+
 
 
 
