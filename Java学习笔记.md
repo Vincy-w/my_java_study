@@ -42,7 +42,227 @@
 
 1、单列集合（存单个对象）
 
+![hadoop](https://github.com/Vincy-w/my_java_study/raw/main/picture/Collection.png)
 
+2、双列集合（存key和value）
+
+![hadoop](https://github.com/Vincy-w/my_java_study/raw/main/picture/Map.png)
+
+#### &sect;2.Collection接口
+
+**一、接口实现类的特点**
+
+1、collection实现子类可存放多个元素，每个元素可以是Object
+
+2、有些Collection的实现类，可存放重复元素，有些不可以
+
+3、有些Collection的实现类，是有序的（List），有些是无序的（Set）
+
+4、Collection接口没有直接实现的子类，是通过子接口Set和List实现的
+
+**二、常用方法**
+
+add：添加单个元素
+
+remove：删除指定元素
+
+contains：查找某元素是否存在
+
+size：获取元素个数
+
+isEmpty：判断是否为空
+
+clear：清空
+
+addAll：添加多个元素
+
+containsAll：查找多个元素是否都存在
+
+removeAll：删除多个元素
+
+**三、Collection接口遍历元素**
+
+1、使用Iterator（迭代器）
+
+​	①Iterator对象称为迭代器，主要用于遍历Collection集合中的元素
+
+​	②所有实现了Collection接口的集合类都有一个iterator（）方法，用以返回一个实现了Iterator接口的对象，即返回一个迭代器
+
+​	③Iterator仅用于遍历集合，Iterator本身并不存放对象
+
+​	④迭代器执行原理
+
+​		Iterator iter = coll.iterator();
+
+​		while(iterator.hasNext()){
+
+​		sout...(iterator.next());
+
+​		//next():指针下移；将下移后位置上的元素返回
+
+​		}
+
+​		//快捷键：itit-->生成while
+
+​		//显示所有快捷键：ctrl+j
+
+​	⑤Iterator接口的方法
+
+​		hasNext();next();
+
+​	⑥若要再次遍历，须重置迭代器
+
+​		iterator = coll.iterator();
+
+2、for循环增强
+
+​	①增强for循环，可替代iterator迭代器，特点：增强for就是简化版iterator，本质一样。只能用于遍历集合或数组
+
+​	②基本语法：
+
+​		for(元素类型 元素名：集合名或数组名){
+
+​		访问元素；}
+
+#### &sect;3.List接口
+
+**一、介绍**
+
+1、List接口是Collection接口子接口
+
+2、List集合类中元素有序（即添加和取出顺序一致），且可重复
+
+3、List集合中的每个元素都有其对应顺序索引，即支持索引
+
+4、List容器中的元素都对应一个整数型的序号记载其在容器中的位置，可根据序号存取容器中的元素
+
+**二、List接口常用方法**
+
+1、void add(int index,Object ele);//在index位置插入ele元素
+
+2、boolean addAll(int index,Collection eles);//从index位置开始，将eles中所有元素添加进来
+
+3、Object get(int index);//获取指定index位置元素
+
+4、int indexOf(Object obj);//返回obj在集合首次出现的位置
+
+5、int lastIndexOf(Object obj);//返回obj在当前集合中末次出现的位置
+
+6、Object remove(int index);//移除指定index位置的元素，返回此元素
+
+7、Object set(int index,Object ele);//设置指定index位置的元素为ele，相当于替换
+
+8、List subList(int fromIndex,int toIndex);//返回从from到to位置的子集合[from,to)
+
+9、用for遍历
+
+​	for(int i=0;i<list.size();i++){
+
+​		sout...(list.get(i));}
+
+**三、ArrayList**
+
+1、注意事项
+
+​	①permits all elements,including null.ArrayList可以加入null
+
+​	②ArrayList是由数组来实现数据存储的
+
+​	③ArrayList基本等同于Vector，除了ArrayList是线程不安全（执行效率高），在多线程时，不建议使用ArrayList
+
+2、底层机制
+
+​	①ArrayList中维护了一个Object类型的数组。elementDate,transient Object[] elementDate
+
+​	②当创建ArrayList对象时，若使用的是无参构造器，则初始elementDate容量为0，第一次添加，则扩容为10；若再次扩容，则扩容为elementDate的1.5倍
+
+​	③若使用指定大小构造器，则初始容量为指定大小，若扩容，则直接扩为1.5倍
+
+**四、Vector**
+
+1、基本介绍
+
+​	①Vector类的定义说明
+
+​	②Vector底层也是一个对象数组，protected Object[] elementData
+
+​	③Vector是线程同步的，即线程安全
+
+​	④若无参，默认10，满后按2倍扩容。若指定大小，则每次直接按2倍扩
+
+**五、LinkedList**
+
+1、说明
+
+​	①LinkedList是实现了双向链表和双端队列特点
+
+​	②可添加任意元素，（元素可重复），包括Null
+
+​	③线程不安全，没有实现同步
+
+2、底层机制
+
+​	①LinkedList底层维护一个双向链表
+
+​	②LinkedList中维护两个属性first和last分别指向首节点和尾节点
+
+​	③每个节点（Node对象）里又维护了prev. next. item三个属性，其中通过prev指向前一个，...。最终实现双向链表。
+
+​	④LinkedList元素的添加和删除，不是通过数组完成的，相对效率较高
+
+**六、Arraylist和LinkedList**
+
+1、若改查操作多，选Array List
+
+2、若增删操作多，选LinkedList
+
+3、一般，程序中大部分选ArrayList
+
+4、一个项目中，可能某模块用ArrayList，某模块用LinkedList，根据业务进行选择
+
+#### &sect;4.Set接口
+
+**一、介绍**
+
+1、无序（添加和取出顺序不一致），没有索引
+
+2、不允许重复元素，最多包含一个null
+
+**二、常用方法**
+
+跟list一样，也是Collection的子接口，故常用方法与Collection一样
+
+**三、遍历**
+
+1、迭代器
+
+2、增强for
+
+**四、HashSet的说明**
+
+1、HashSet实际上是Hash Map
+
+2、最多存放一个null
+
+3、HashSet不保证元素是有序的
+
+4、底层机制
+
+​	①HashSet底层和HashMap，HashMap底层是：数组+链表+红黑树
+
+​	②源码
+
+​		Ⅰ.HashSet底层是HashMap
+
+​		Ⅱ.添加一个元素值，先得到hash值---》转成索引值
+
+​		Ⅲ.找到存储表table，看这个索引位置是否已存放元素
+
+​		Ⅳ.若没有，直接放入
+
+​		Ⅴ.若有，调用equals比较，如果相同，就不添加，若不同，则添加到最后
+
+​		Ⅵ.在java8中，若一条链表的元素个数超过8，且table的大小>=64，就红黑树化
 
 
 
